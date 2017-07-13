@@ -100,7 +100,7 @@ def bfs_set(graph, start): # using set
       queue.extend(graph[vertex] - visited)
 
   return visited
-print (bfs_set(graph, 'A'))
+print (bfs_set(graph, 'A')) # {'A', 'E', 'F', 'D', 'B', 'C'}
 
 def bfs_paths(graph, start, goal): # return all the possible paths
   queue = [(start, [start])]      # return the shorest path first
