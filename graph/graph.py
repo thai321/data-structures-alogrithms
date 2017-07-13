@@ -33,9 +33,11 @@ class Graph:
 
     self.nodes[source].adjacent[self.nodes[dest]] = weight
 
+"""
 g = Graph()
 g.add_edge(0,1, 5) # edge [0,1]
 print (g.nodes) # node 0 and node 1
 
 g.add_edge(1,2,3) # edge [1,2]
 print (g.nodes) # node 0, node 1, and node 2
+"""

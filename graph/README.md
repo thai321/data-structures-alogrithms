@@ -29,3 +29,56 @@
 
 
 ## Knight's Tour Problem
+
+## Depth First Search (DFS)
+
+```python3
+graph = {'A': set(['B', 'C']),
+         'B': set(['A', 'D', 'E']),
+         'C': set(['A', 'F']),
+         'D': set(['B']),
+         'E': set(['B', 'F']),
+         'F': set(['C', 'E'])}
+
+def dfs_set(graph, start): # using set
+  visited = set()
+  stack = [start]
+
+  while stack:
+    vertex = stack.pop()
+    # print (vertex)
+    if vertex not in visited:
+      visited.add(vertex)
+      stack.extend(graph[vertex] - visited)
+
+  return visited
+
+print(dfs_set(graph, 'A')) # {'A', 'D', 'E', 'C', 'B', 'F'}
+
+
+def dfs_recursive(graph, start, visited=None): # using recursive
+  if visited is None:
+      visited = set()
+
+  visited.add(start)
+
+  for nxt in graph[start] - visited: # build up the visited set
+    dfs_recursive(graph, nxt, visited)
+
+  return visited
+
+print (dfs_recursive(graph, 'A')) #{'A', 'B', 'C', 'D', 'E', 'F'}
+
+def dfs_paths(graph, start, goal): # show all paths between 2 nodes
+  stack = [ (start, [start]) ] # contain a vertex and path = array of vertices
+  while stack:
+    (vertex, path) = stack.pop()  # build up the path
+    for nxt in graph[vertex] - set(path):
+      if nxt == goal:
+        yield path + [goal]
+      else:
+        stack.append( (nxt, path + [nxt]) )
+
+print (list(dfs_paths(graph, 'A', 'F')))
+#[['A', 'B', 'E', 'F'], ['A', 'C', 'F']]
+```
