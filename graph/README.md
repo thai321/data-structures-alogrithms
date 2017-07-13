@@ -78,7 +78,7 @@ def dfs_paths(graph, start, goal): # show all paths between 2 nodes
 
 print (list(dfs_paths(graph, 'A', 'F')))
 #[['A', 'B', 'E', 'F'], ['A', 'C', 'F']]
-
+```
 
 ## Breadth First Search (BFS)
 ```python
