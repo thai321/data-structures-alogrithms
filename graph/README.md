@@ -27,6 +27,124 @@
 
 ## Knight's Tour Problem
 
+## Adjacency List Implementation
+```python
+class Vertex:
+  def __init__(self, key):
+    self.id = key
+    self.connectedTo = {}
+
+  def addNeighbor(self, nbr, weight=0):
+    self.connectedTo[nbr] = weight
+
+  def getConnections(self):
+    return self.connectedTo.keys()
+
+  def getId(self):
+    return self.id
+
+  def getWeight(self, nbr):
+    return self.connectedTo[nbr]
+
+  def __str__(self):
+    return str(self.id) + ' connected to: ' + str([x.id for x in self.connectedTo])
+
+class Graph:
+  def __init__(self):
+    self.vertList = {}
+    self.numVertices = 0
+
+  def addVertex(self, key):
+    self.numVertices += 1
+    newVertex = Vertex(key)
+    self.vertList[key] = newVertex
+    return newVertex
+
+  def getVertex(self, n):
+    if n in self.vertList:
+      return self.vertList[n]
+    else:
+      return None
+
+  def addEdge(self, f, t, cost=0): # f: from , t: to
+    if f not in self.vertList:
+      self.addVertex(f)
+    if t not in self.vertList:
+      self.addVertex(t)
+
+    self.vertList[f].addNeighbor(self.vertList[t], cost)
+
+  def getVertices(self):
+    return self.vertList.keys()
+
+  def __iter__(self):
+    return iter(self.vertList.values()) # list of Vertex
+
+  def __contain__(self, n):
+    return n in self.vertList
+"""
+g = Graph()
+for i in range(6): # 0-5 --> 6 vertices
+  g.addVertex(i)
+
+print g.vertList
+
+g.addEdge(0, 1, 2)  # edge [0,1] with weight = 2
+
+for vertex in g:
+  print vertex
+  print vertex.getConnections()
+  print '\n'
+"""
+```
+
+## Graph Implementation
+
+```python
+from enum import Enum
+from collections import OrderedDict # a dictionary, remember the keys order
+
+class State(Enum):
+  unvisited  = 1
+  visited = 2
+  visiting = 3
+
+class Node:
+  def __init__(self, num):
+    self.num = num
+    self.visit_state = State.unvisited
+    self.adjacent = OrderedDict() # key = node, value = weight
+
+  def __str__(arg):
+    return str(self.num)
+
+class Graph:
+  def __init__(self):
+    self.nodes = OrderedDict()
+
+  def add_node(self, num):
+    node = Node(num)
+    self.nodes[num] = node
+    return node
+
+  def add_edge(self, source, dest, weight=0):
+    if source not in self.nodes:
+      self.add_node(source)
+    if dest not in self.nodes:
+      self.add_node(dest)
+
+    self.nodes[source].adjacent[self.nodes[dest]] = weight
+
+"""
+g = Graph()
+g.add_edge(0,1, 5) # edge [0,1]
+print (g.nodes) # node 0 and node 1
+
+g.add_edge(1,2,3) # edge [1,2]
+print (g.nodes) # node 0, node 1, and node 2
+"""
+```
+
 ## Depth First Search (DFS)
 
 ```python
