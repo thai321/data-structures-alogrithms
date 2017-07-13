@@ -18,8 +18,8 @@ def dfs_set(graph, start): # using set
     # print (vertex)
     if vertex not in visited:
       visited.add(vertex)
-
       stack.extend(graph[vertex] - visited)
+
   return visited
 
 print(dfs_set(graph, 'A')) # {'A', 'D', 'E', 'C', 'B', 'F'}
