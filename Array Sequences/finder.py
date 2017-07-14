@@ -1,4 +1,4 @@
-def finder(arr1,arr2): 
+def finder(arr1,arr2):
   h = {}
 
   for x in arr2:

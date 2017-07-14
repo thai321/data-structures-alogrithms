@@ -106,7 +106,7 @@ would return 2 pairs:
  + (2,2)
 
 ```python
-def pair_sum1(arr,k):  # my version
+def pair_sum1(arr,k):
   h = {}
   count = 0
   for x in arr:
@@ -161,7 +161,7 @@ Given these two arrays, find which element is missing in the second array.
 5 is the missing number
 
 ```python
-def finder(arr1,arr2):  # my version
+def finder(arr1,arr2):
   h = {}
 
   for x in arr2:
