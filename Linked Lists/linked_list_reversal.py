@@ -52,6 +52,4 @@ print d.nextnode.value # 3
 print c.nextnode.value # 2
 print b.nextnode.value # 1
 
-
-print a.nextnode.value # This will give an error
-                      # since it now points to None
+print a.nextnode.value # This will give an error since it now points to None
